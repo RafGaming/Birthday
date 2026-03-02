@@ -10,22 +10,21 @@ import Admin from "./components/Admin";
 import { burstConfetti } from "./utils/confetti";
 
 /**
- * Invitation App root
- * - Uses simple hash-based admin access (/#admin) for demo admin viewing
- * - Prefers Supabase if env vars set, otherwise localStorage fallback
+ * Superhero Invitation App
+ * Celebrant: 4 years old — big comic vibes
  */
 export default function App() {
   const event = {
-    title: "Alex’s 30th Birthday Celebration",
-    host: "Alex & Friends",
-    dateISO: "2026-12-25T18:00:00",
-    location: "The Grand Hall, 123 Celebration Ave, City",
+    title: "Captain Alex’s Super 4th Birthday!",
+    host: "Captain Alex & Crew",
+    dateISO: "2026-12-25T10:30:00",
+    location: "Hero Hangout: Playhouse Park, 1 Fun St, Town",
     rsvpDeadline: "2026-12-10"
   };
 
   useEffect(() => {
-    // play small entrance confetti on first load (subtle)
-    burstConfetti({ count: 48 });
+    // an initial friendly blast (subtle)
+    burstConfetti({ count: 56 });
   }, []);
 
   const handleCelebrate = (el) => {
@@ -34,17 +33,17 @@ export default function App() {
       burstConfetti({
         x: rect.left + rect.width / 2,
         y: rect.top + rect.height / 3,
-        count: 160
+        count: 180
       });
     } else {
-      burstConfetti({ count: 260 });
+      burstConfetti({ count: 220 });
     }
   };
 
   const isAdmin = typeof window !== "undefined" && window.location.hash === "#admin";
 
   return (
-    <div className="site-root">
+    <div className="site-root hero-theme">
       <ParticlesCanvas />
       {isAdmin ? (
         <Admin />
@@ -52,7 +51,7 @@ export default function App() {
         <>
           <header className="site-header">
             <div className="top-nav" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-              <div className="logo">✨ Invitation</div>
+              <div className="logo">🦸‍♂️ Captain Alex</div>
             </div>
           </header>
 
@@ -84,7 +83,7 @@ export default function App() {
             </section>
           </main>
 
-          <Footer onCelebrate={() => burstConfetti({ count: 260 })} />
+          <Footer onCelebrate={() => burstConfetti({ count: 300 })} />
         </>
       )}
     </div>
