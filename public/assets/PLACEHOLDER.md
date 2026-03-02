@@ -1,4 +1,4 @@
-Place your media assets in this folder with the following filenames (used by the starter):
+Place your media assets in this folder:
 
 - birthday-melody.mp3   -> Background music (looping)
 - photos/photo1.jpg
@@ -8,4 +8,4 @@ Place your media assets in this folder with the following filenames (used by the
 - photos/photo5.jpg
 - photos/photo6.jpg
 
-Do not commit large binaries to the repo if you prefer to keep git lightweight. Consider using an object storage or Git LFS for large media in production.
+Replace these placeholders with production assets or use cloud storage for large files.
