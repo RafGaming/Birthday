@@ -1,54 +1,37 @@
 import React, { useEffect, useRef } from "react";
 
-/**
- * Footer with animated flickering candles and social links.
- * When scrolled into view triggers a final celebratory animation.
- */
 export default function Footer({ onCelebrate }) {
   const ref = useRef();
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // do final celebration once
-            onCelebrate && onCelebrate();
-            obs.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          onCelebrate && onCelebrate();
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.6 });
     obs.observe(el);
     return () => obs.disconnect();
   }, [onCelebrate]);
 
   return (
-    <footer ref={ref} className="site-footer premium-footer">
-      <div className="candles-row" aria-hidden>
-        <div className="candle-wrap">
-          <div className="candle-body" />
-          <div className="flame" />
+    <footer ref={ref} className="site-footer">
+      <div className="candles-row" aria-hidden style={{ display: "flex", gap: 10 }}>
+        <div style={{ width: 18, height: 60, position: "relative" }}>
+          <div style={{ width: "100%", height: "100%", background: "linear-gradient(180deg,#fff,#ffd6ea)", borderRadius: 6 }} />
+          <div style={{ position: "absolute", left: "50%", top: -6, transform: "translateX(-50%)", width: 8, height: 12, background: "linear-gradient(180deg,#ffd66b,#ff9fd9)", borderRadius: 6 }} />
         </div>
-        <div className="candle-wrap">
-          <div className="candle-body" />
-          <div className="flame" />
-        </div>
-        <div className="candle-wrap">
-          <div className="candle-body" />
-          <div className="flame" />
+        <div style={{ width: 18, height: 60, position: "relative" }}>
+          <div style={{ width: "100%", height: "100%", background: "linear-gradient(180deg,#fff,#ffd6ea)", borderRadius: 6 }} />
+          <div style={{ position: "absolute", left: "50%", top: -6, transform: "translateX(-50%)", width: 8, height: 12, background: "linear-gradient(180deg,#ffd66b,#ff9fd9)", borderRadius: 6 }} />
         </div>
       </div>
 
-      <div className="footer-meta">
-        <div className="socials" role="navigation" aria-label="Social links">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Twitter">TW</a>
-          <a href="#" aria-label="Facebook">FB</a>
-        </div>
-        <div className="credits">Made with ✨ and love</div>
+      <div style={{ marginTop: 12, color: "var(--muted)" }}>
+        <div>Made with ✨ and love</div>
       </div>
     </footer>
   );
