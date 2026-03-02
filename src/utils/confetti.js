@@ -1,7 +1,3 @@
-/**
- * Simple performant confetti burst using canvas overlay.
- * - options: x, y (page coords), count
- */
 export function burstConfetti({ x = null, y = null, count = 100, spread = 60 } = {}) {
   const canvas = document.createElement("canvas");
   canvas.style.position = "fixed";
